@@ -2,9 +2,7 @@ import styles from "./Form.module.css";
 import {nanoid} from "nanoid";
 import { useState, memo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from '../../redux/contacts/contactsActions';
-
-
+import { addContact } from '../../redux/contacts/contactsOperations';
 
 function Form() {
   const [name, setName] = useState('');
