@@ -16,10 +16,10 @@ const ContactItem = ({ id, name, number, onDelete }) => {
   );
 };
 
-export default memo(ContactItem);
-
 ContactItem.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
+
+export default memo(ContactItem);

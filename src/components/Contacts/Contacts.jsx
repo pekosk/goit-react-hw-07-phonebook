@@ -1,23 +1,15 @@
 import { memo } from 'react';
-import { removeContact } from '../../redux/contacts/contactsActions';
+import { removeContact } from '../../redux/contacts/contactsOperations';
 import { useDispatch, useSelector } from "react-redux";
-
+import { getVisibleContacts } from "../../redux/contacts/contactsSelector";
 import ContactsItem from './ContactsItem';
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contact);
-  const filter = useSelector((state) => state.filter);
+  const visiblesContacts = useSelector(getVisibleContacts);
   const removeContacts = (id) => dispatch(removeContact(id));
-    
-  const getItems = () => {
-    if ( filter === '') return contacts;
-    return contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
-    };
-    
-    const items = getItems();
 
-  const elements = items.map(({ id, ...item}) => (
+  const elements = visiblesContacts.map(({ id, ...item}) => (
     <ContactsItem
       key={id}
       {...item}
