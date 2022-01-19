@@ -9,13 +9,11 @@ const path = {
 export const addContactApi = async (contact) => {
     try {
         const { data } = await axios.post(path.CONTACTS, contact);
-        console.log(data)
         return data;
     } catch (error) {
         throw error.message;
     }
 };
-console.log(addContactApi)
 
 export const getContactsApi = async () => {
     try {
