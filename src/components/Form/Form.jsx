@@ -3,26 +3,25 @@ import {nanoid} from "nanoid";
 import { useState, memo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { addContact } from '../../redux/contacts/contactsOperations';
+import { getVisibleContacts} from '../../redux/contacts/contactsSelector'
 
 function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const contactSelector = useSelector((state) => state.contact)
-
+  const contacts = useSelector(getVisibleContacts);
+  
   const nameRandomId = nanoid();
   const numberRandomId = nanoid();
 
-  const handleSubmit = (e) => {
-     e.preventDefault();
-    const contacts = { name, number };
-    const isNameContact = contactSelector.some( e => e.name.toLowerCase() === name.toLowerCase())
-    if (isNameContact) {
-      return alert(`${name} is already in contacts.`);
+ const handleSubmit = (e) => {
+    e.preventDefault();
+    if (contacts?.map((contact) => contact.name).includes(name)) {
+      return alert(`${name} is already in contacts`);
     }
-    dispatch(addContact(contacts));
-    setName('');
-    setNumber('')
+   dispatch(addContact({ name, number }));
+   setName('');
+   setNumber('');
   };
 
    const handleChange = ({ target }) => {
