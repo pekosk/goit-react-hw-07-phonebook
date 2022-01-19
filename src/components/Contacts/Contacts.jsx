@@ -9,7 +9,7 @@ const Contacts = () => {
   const visiblesContacts = useSelector(getVisibleContacts);
   const removeContacts = (id) => dispatch(removeContact(id));
 
-  const elements = visiblesContacts.map(({ id, ...item}) => (
+  const elements = visiblesContacts.map(({ id, ...item }) => (
     <ContactsItem
       key={id}
       {...item}
