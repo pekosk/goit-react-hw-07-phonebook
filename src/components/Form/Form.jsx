@@ -16,7 +16,7 @@ function Form() {
 
  const handleSubmit = (e) => {
     e.preventDefault();
-    if (contacts?.map((contact) => contact.name).includes(name)) {
+    if (contacts.some((contact) => contact.name.toLowerCase() === name.toLowerCase())) {
       return alert(`${name} is already in contacts`);
     }
    dispatch(addContact({ name, number }));
